@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list</title>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body ng-app="myApplication" ng-controller="myController">
+    <h1 align="center">To Do List</h1>
+    <div class="container">
+      <div class="newtask">
+        <form>
+          <input
+            type="text"
+            name=""
+            ng-model="task_name"
+            class="input_list"
+            placeholder="Task to be performed..."
+          />
+          <button id="push" ng-click="save()">Add</button>
+          <input type="reset" value="Clear" name="reset" class="clear" />
+        </form>
+      </div>
+      <div>
+        <br /><br />
+        <h4 align="center">Total Tasks : {{tasks.length}}</h4>
+        <br />
+        <table border="1" align="center" bgcolor="#c75555">
+          <tr align="center">
+            <th>No.</th>
+            <th>Task Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          <tr ng-repeat="task in tasks" class="trow">
+            <td class="{{task.status==2?'completed':task.status==1?'pro':''}}">
+              {{$index+1}}
+            </td>
+            <td class="{{task.status==2?'completed':task.status==1?'pro':''}}">
+              {{task.task_title}}
+            </td>
+            <td class="{{task.status==2?'completed':task.status==1?'pro':''}}">
+              {{task.status==2?"Finished":task.status==1?"In
+              progress":"Pending"}}
+            </td>
+            <td class="{{task.status==2?'completed':task.status==1?'pro':''}}">
+              <button ng-click="progress($index)" class="action">
+                In Progress
+              </button>
+              <button ng-click="finished($index)" class="action">
+                Finished
+              </button>
+              <button ng-click="remove($index)" class="action">Delete</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
